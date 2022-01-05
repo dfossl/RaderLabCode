@@ -1,0 +1,1 @@
+annotationDir = "/Users/stephen/Dropbox/•LAB DATA/Cm Data/C. merolae Bioinformatics/pipelinepythonscripts/Annotations"

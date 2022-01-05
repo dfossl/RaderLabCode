@@ -12,7 +12,7 @@ from sklearn.cluster import KMeans
 import matplotlib
 from venn import venn
 import os
-
+import global_python_meta
 random.seed(123)
 np.random.seed(123)
 
@@ -33,7 +33,7 @@ np.random.seed(123)
 # for index, row in df1.iterrows():
 #     print(index)
 
-annotationDir = "/Users/stephen/Dropbox/•LAB DATA/Cm Data/C. merolae Bioinformatics/pipelinepythonscripts/Annotations"
+annotationDir = global_python_meta.annotationDir
 
 # links each go term to how many genes mapp to that pathway
 pickle_in = open(os.path.join(annotationDir, "goTerm2NumberofGenes_Dict.pickle"), "rb")
