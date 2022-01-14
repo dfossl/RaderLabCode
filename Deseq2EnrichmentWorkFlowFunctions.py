@@ -56,6 +56,9 @@ dict_KEGG_pathway_2_genelist = pickle.load(pickle_in)
 pickle_in = open(os.path.join(annotationDir, "list_allKeggGenesInPathways.pl"), "rb")
 list_allKeggGenesInPathways = pickle.load(pickle_in)
 
+genesToProteindf = pd.read_csv(os.path.join(annotationDir, "uniprot_allgenes_2022-01-12.csv"), index_col=0)
+
+
 def sortCombinedFileUpandDowngenesToList(df_LFC, score_thres, inputDir):
     groups = set()
     for col in df_LFC.columns:
@@ -489,7 +492,7 @@ Takes the combined results dataframe from all comparisons and makes a density pl
 
 columns is a list of columns to include in the density Plot
 """
-def py_densityplotCompareColumns(df, columns, percentile, comparison, xlabel, outputfiledir, legend=False):
+def py_densityplotCompareColumns(df, columns, percentile, comparison, xlabel, outputfiledir, legend=False, expLabel=""):
 
     percentile = percentile*100
 
@@ -568,7 +571,10 @@ def py_densityplotCompareColumns(df, columns, percentile, comparison, xlabel, ou
     plt.xlabel(xlabel)
     plt.ylabel('Density')
     plt.tight_layout()
-    plt.savefig(os.path.join(outputfiledir, "denisty_compare_"+comparison+"_"+str(percentile)+"_percentile_"+xlabel+".png"))
+    if expLabel:
+        plt.savefig(os.path.join(outputfiledir, expLabel+"_denisty_compare_"+comparison+"_"+str(percentile)+"_percentile_"+xlabel+".png"))
+    else:
+        plt.savefig(os.path.join(outputfiledir, "denisty_compare_"+comparison+"_"+str(percentile)+"_percentile_"+xlabel+".png"))
 
     
     plt.close("all")
@@ -1709,3 +1715,10 @@ def py_getlistofGenes_Padj_range(res, max_=np.inf, min_=-np.inf):
 
     return list(holder.index)
 
+
+"""
+Takes a dataframe with c merolae genes and returns a dataframe with the columns attached.
+"""
+def py_addProteinColumnToDataframe(df):
+    proteins = genesToProteindf[["Protein", "Function"]].astype(str)
+    return proteins.join(df, how="right")

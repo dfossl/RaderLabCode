@@ -358,7 +358,7 @@ generateGeneCountVarianceHeatmap <- function(rlogcounts, coldata, column, geneNu
 
     # print(coldata[,column])
     numberOfGroups <- length(coldata[,column][!duplicated(coldata[,column])])
-    print(numberOfGroups)
+    # print(numberOfGroups)
 
     var_genes <- apply(rlogcounts, 1, var)
 
@@ -398,11 +398,11 @@ generateGeneCountVarianceHeatmap <- function(rlogcounts, coldata, column, geneNu
     # print(colors[1:numberOfGroups])
     # col.cell <- colors[coldata[,column]]
     col.cell <- colors
-    print(class(coldata[,column]))
-    print(coldata[,column])
-    print(colors)
-    print(col.cell)
-    print(rownames(highly_variable_lcpm))
+    # print(class(coldata[,column]))
+    # print(coldata[,column])
+    # print(colors)
+    # print(col.cell)
+    # print(rownames(highly_variable_lcpm))
     return(gplots::heatmap.2(highly_variable_lcpm,col=rev(morecols(50)),trace="none", ColSideColors=col.cell,scale="row", margins=margins, labRow = labRow, labCol = labCol, cexRow=cexRow))
     # return(gplots::heatmap.2(highly_variable_lcpm,col=rev(morecols(50)),trace="none",scale="row"))
 
@@ -440,9 +440,9 @@ differentialExpression <- function(control, treated, variable, dds, alpha=0.01){
 
 combinedResultDataFrames <- function(formatedCSVThereshold0, res, index, control, treated){
     # this code adds the LFC and padj for each tested condition to one master file
-    names(formatedCSVThereshold0)[index] <- paste("LFC_", treated, "V", control, sep="")
-    names(formatedCSVThereshold0)[(index+1)] <- paste("padj_", treated, "V", control, sep="")
-    names(formatedCSVThereshold0)[(index+2)] <- paste("Score_", treated, "V", control, sep="")
+    names(formatedCSVThereshold0)[index] <- paste("LFC_", treated, "v", control, sep="")
+    names(formatedCSVThereshold0)[(index+1)] <- paste("padj_", treated, "v", control, sep="")
+    names(formatedCSVThereshold0)[(index+2)] <- paste("Score_", treated, "v", control, sep="")
     formatedCSVThereshold0[,index] <- res[,"log2FoldChange"]
     formatedCSVThereshold0[,(index+1)] <- res[,"padj"]
     formatedCSVThereshold0[,(index+2)] <- res[,"score"]

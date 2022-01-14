@@ -1,66 +1,3 @@
-# This loads all the function from the DifferentialExpressionFunctions.R script. Make sure its the right directory for you
-source("DifferentialExpressionFunctions_August_New.R")
-
-
-set.seed(123)
-
-#Setting up python instance
-#cmd- which python3 gets path
-{
-use_python("/usr/local/bin/python3", required = T)
-py_config()
-source_python("/Users/stephen/Dropbox/•LAB\ DATA/Cm\ Data/C.\ merolae\ Bioinformatics/pipelinepythonscripts/Deseq2EnrichmentWorkFlowFunctions.py")
-}
-
-
-#Input Data
-
-
-# Setting Working Directory
-# Shows current working directory.
-getwd()
-
-# If working Directory should change place path here.
-currentDir = getwd()
-setwd(currentDir)
-
-# This location is where ouput Files will Start. Should be name of folder in working directory
-OutputFileDirectory <- file.path(currentDir, "R_Output_folder")
-
-# Location of data
-# This is usually in the working directory but doesn't have to be.
-#Keep all data in one directory and padting the specific directory here
-# can be useful for not having duplicates
-CountFileDirectory <- "Au_data.csv"
-# AnnotationFileDirectory <- "/Users/dfossl/OneDrive/Documents/Dylan_School_Cloud/Rader Lab/Analysis-LP/Deseq2Analysis_LowPhosphorous/LP_annotation.csv"
-AnnotationFileDirectory <- "Au_annotation.csv"
-
-cts <- read.csv(CountFileDirectory, row.names=1)
-coldata <- read.csv(AnnotationFileDirectory, row.names=1)
-coldata <- droplevels(coldata)
-
-# WARNING: A common error is having numbers in the annotation makes those columns not be considered Factors
-# You can force a column to be considered a factor with the following code.
-# coldata$column <- factor(coldata$column)
-
-
-#Makes sure the columns in data match rows in annotation.
-checkColumnsMatch(coldata, cts)
-rownames(coldata) %in% colnames(cts)
-if(!checkColumnsMatch(coldata, cts)){
-  print("ERROR, you have rows and columns with different names or exrta rows or columns.
-          Therefore reformat Data till TRUE. ")
-}
-
-#expVariables holds list of variable conditions
-expvariables <- colnames(coldata)
-expvariables
-
-# Set what the minimum count you wish each row to sum too.
-# Deseq2 Documentation claims more robust filtering in making the Deseq object
-# So I am trusting them on this,
-minimumCount <- 10
-
 
 
 # Creating DESeq2Dataset
@@ -124,7 +61,7 @@ minimumCount <- 10
 #  print(p)
 #  dev.off()
 
-}
+#}
 
 #____________________END of Time Course analysis_________________#
 
@@ -133,10 +70,12 @@ minimumCount <- 10
 #____________________Analysis at specific timepoints_____________#
 # If time course shows genes are variable over time (or some other variable)
 # then good idea to do analysis at each time
+source("NewFullRNAseqPipeline_metadata.R")
+
 
 dds<-DESeqDataSetFromMatrix( countData = cts,
                              colData = coldata,
-                             design = ~ condition)
+                             design = configDesign)
 
 # sorts using mincount set in first section
 {
@@ -173,21 +112,19 @@ groupsToLookAt = NULL
 #Note default this is top 500 most variable genes.
 pcaData <- rader_plotPCA(object=rld,
 #                         intgroup=c("conditionAndtimepoint"),
-                         intgroup=c("condition"),
+                         intgroup=c(configDesignStr),
                          returnData=TRUE,
                          groups=groupsToLookAt,
                          ntop = 500)
-pcaData_FileName = "Au_PCA.csv"
+pcaData_FileName = paste(experimentIdentifier, "_PCA.csv", sep="")
 write.csv(pcaData, file.path(OutputFileDirectory, pcaData_FileName))
 
 
 p <- pcaPlotFormated(pcaData,
-#                     color="conditionAndtimepoint",
-#                     legendTitleC = "Condition And Timepoint")
-color="condition",
-legendTitleC = "Condition")
+  color=configDesignStr,
+  legendTitleC = str_to_title(configDesignStr))
 
-tiff(file.path(OutputFileDirectory,"PCA_Plot_rlog_Au.tiff"), width=6, height=5,
+tiff(file.path(OutputFileDirectory,paste(experimentIdentifier, "_PCA_Plot_rlog.tiff"), sep=""), width=6, height=5,
      units = 'in', res = 150)
 print(p)
 dev.off()
@@ -197,26 +134,26 @@ dev.off()
 pcaResultsGenes <- generateGenePCAValues(rld, groups=groupsToLookAt)
 holderDF <- as.data.frame(pcaResultsGenes)
 rownames(holderDF) <- rownames(pcaResultsGenes)
-genePCAData_name = "Au_Gene_PCA_Data.csv"
+genePCAData_name = paste(experimentIdentifier,"_Gene_PCA_Data.csv", sep="")
 write.csv(holderDF, file.path(OutputFileDirectory,genePCAData_name))
 
-tiff(file.path(OutputFileDirectory, "Distance_Plot_rlog_ALL_timepointAsControl.tiff"), width=575*2, height=575*2, res=200)
+tiff(file.path(OutputFileDirectory, paste(experimentIdentifier,"_Distance_Plot_rlog_ALL_timepointAsControl.tiff", sep="")), width=575*2, height=575*2, res=200)
 #generateDistMatrix(rld, coldata, "conditionAndtimepoint", groups=groupsToLookAt)
-generateDistMatrix(rld, coldata, "condition", groups=groupsToLookAt)
+generateDistMatrix(rld, coldata, configDesignStr, groups=groupsToLookAt)
 dev.off()
 
-tiff(paste(OutputFileDirectory,"/exploratoryBarPlottemp.tiff", sep=""), width=575*2, height=575*2, res=200)
+tiff(file.path(OutputFileDirectory, paste(experimentIdentifier,"_exploratoryBarPlottemp.tiff", sep="")), width=575*2, height=575*2, res=200)
 generateBarplotForTotalReadCounts(cts, groups=groupsToLookAt)
 dev.off()
 
 
 p <- generateNormalizedBoxplot(cts, groups=groupsToLookAt)
-tiff(paste(OutputFileDirectory,"/exploratoryBoxPlottemp.tiff", sep=""), width=575*2, height=575*2, res=200)
+tiff(file.path(OutputFileDirectory,paste(experimentIdentifier,"_exploratoryBoxPlottemp.tiff", sep="")), width=575*2, height=575*2, res=200)
 print(p)
 dev.off()
 
 p <- generateNormalizedDensityPlot(cts, groups=groupsToLookAt)
-tiff(paste(OutputFileDirectory,"/exploratoryDensityPlottemp.tiff", sep=""), width=575*3, height=575*2, res=200)
+tiff(file.path(OutputFileDirectory,paste(experimentIdentifier,"_exploratoryDensityPlottemp.tiff", sep="")), width=575*3, height=575*2, res=200)
 print(p)
 dev.off()
 
@@ -229,16 +166,16 @@ coldata_filtered
 numberOfGenes <- c(10,100,500,1000)
 
 for(geneNumber in numberOfGenes){
-    tiff(paste(OutputFileDirectory,"/Z-Score.HeatMap", geneNumber, "MostVariableGenes_ALL.tiff", sep=""),
+    tiff(file.path(OutputFileDirectory,paste(experimentIdentifier,"_Z-Score.HeatMap", geneNumber, "MostVariableGenes_ALL.tiff", sep="")),
          width = 5,
          height = 6,
          units='in',
          res=250)
   
   if(geneNumber < 100){
-    generateGeneCountVarianceHeatmap(rlogcounts, coldata_filtered, "conditionAndtimepoint", geneNumber)
+    generateGeneCountVarianceHeatmap(rlogcounts, coldata_filtered, configDesignStr, geneNumber)
   }else{
-    generateGeneCountVarianceHeatmap(rlogcounts, coldata_filtered, "conditionAndtimepoint", geneNumber, labRow = FALSE)
+    generateGeneCountVarianceHeatmap(rlogcounts, coldata_filtered, configDesignStr, geneNumber, labRow = FALSE)
   }
     
     dev.off()
@@ -256,17 +193,19 @@ for(geneNumber in numberOfGenes){
 #controlVector <- c("RM1h", "RM2h", "RM24h", "RM49h")
 #treatedVector <- c("LP1h", "LP2h", "LP24h", "LP49h")
 
-controlVector <- c("RM")
-treatedVector <- c("Au")
+#Moved to metadata file. maybe keep here?
+# controlVector <- c("RM")
+# treatedVector <- c("Au")
 
 # The variable should be the name of the column in the annotation file that holds
 # the terms found in controlVector and treatedVector
 #variable <- "conditionAndtimepoint"
-variable <- "condition"
+variable <- configDesignStr
 
 
 firstEntry <- TRUE
 index <- 1
+
 for(i in 1:length(controlVector)){
 
     control <- controlVector[i]
@@ -276,12 +215,12 @@ for(i in 1:length(controlVector)){
 
     res <- differentialExpression(control, treated, variable, dds, alpha=0.01)
 
-    write.csv(res, file = paste(OutputFileDirectory,"/",treated, "v", control,"_DESeq2ResultsThreshold0.csv", sep = ""))
-    write.csv(subset(res, padj < 0.01), file = paste(OutputFileDirectory,"/", treated, "v", control,"_DESeq2ResultsThreshold0p0.01.csv", sep = ""))
+    write.csv(py_addProteinColumnToDataframe(as.data.frame(res)), file = file.path(OutputFileDirectory, paste(experimentIdentifier,"_",treated, "v", control,"_DESeq2ResultsThreshold0.csv", sep = "")))
+    write.csv(py_addProteinColumnToDataframe(as.data.frame(subset(res, padj < 0.01))), file = file.path(OutputFileDirectory, paste(experimentIdentifier,"_",treated, "v", control,"_DESeq2ResultsThreshold0p0.01.csv", sep = "")))
 
     #Generate MA plot
-    py_generateMAPlot(as.data.frame(res), OutputFileDirectory, "score", percentile=.9, comparison = paste(treated, "v", control, sep=""))
-    py_pvalueVSbasemean(as.data.frame(res), OutputFileDirectory, comparison = paste(treated, "v", control, sep=""), lfc_transform="max")
+    py_generateMAPlot(as.data.frame(res), OutputFileDirectory, "score", percentile=.9, comparison = paste(experimentIdentifier,"_", treated, "v", control, sep=""))
+    py_pvalueVSbasemean(as.data.frame(res), OutputFileDirectory, comparison = paste(experimentIdentifier,"_",treated, "v", control, sep=""), lfc_transform="max")
     
 
     # this is code that is constructing the a file of all the results.
@@ -311,7 +250,7 @@ for(i in 1:length(controlVector)){
     
     percentiles = c(.90, .95, .99)
     for(per in percentiles){
-      py_makeHistPlot(as.data.frame(res), OutputFileDirectory, "score", percentile=per, comparison=paste(treated, "v", control, sep=""))
+      py_makeHistPlot(as.data.frame(res), OutputFileDirectory, "score", percentile=per, comparison=paste(experimentIdentifier,"_",treated, "v", control, sep=""))
     }
     # holder <- res[order(res[,"score"]),]
     # holder <- holder[complete.cases(holder),]
@@ -328,7 +267,7 @@ for(i in 1:length(controlVector)){
     
     scale <- 2.5
     p <- generateVolcanoPlot(res_ordered, y_limits = c(0,300), x_limits = c(-7.5,12.5), x_breaks = c(-5,0,5,10,15))
-    tiff(paste(OutputFileDirectory,"/",treated, "v", control, "_VolcanoPlot.tiff", sep=""),
+    tiff(file.path(OutputFileDirectory,paste(experimentIdentifier,"_",treated, "v", control, "_VolcanoPlot.tiff", sep="")),
         width = scale*550,
         height=scale*500,
         res=scale*100)
@@ -336,32 +275,39 @@ for(i in 1:length(controlVector)){
     dev.off()
     
     if(i == length(controlVector)){
-      write.csv(thresholdValueHolder, file = paste(OutputFileDirectory,"/Comparison_Thresholds.csv", sep = ""))
-      write.csv(formatedCSVThereshold0, file = paste(OutputFileDirectory,"/AllLFCandPadj_Thereshold0.csv", sep = ""))
+      write.csv(thresholdValueHolder, file = file.path(OutputFileDirectory,paste(experimentIdentifier,"_Comparison_Thresholds.csv", sep = "")))
+      write.csv(py_addProteinColumnToDataframe(formatedCSVThereshold0), file = file.path(OutputFileDirectory,paste(experimentIdentifier,"_AllLFCandPadj_Thereshold0.csv", sep = "")))
       
     }
 }
 
 
 #columns = c("Score_LP1hVRM1h", "Score_LP2hVRM2h", "Score_LP24hVRM24h", "Score_LP49hVRM49h")
-columns = c("Score_AuVRM")
+
+
+columns = c()
+for(e in comparison){
+  print(e)
+  columns = append(columns, paste("Score_",e,sep=""))
+}
+
 
 percentiles <- c(.99, .95, .90)
 for(per in percentiles){
-  dist_data = py_densityplotCompareColumns(formatedCSVThereshold0, columns, percentile=per, comparison="Temperature", xlabel="score", outputfiledir=OutputFileDirectory, legend=TRUE)
+  dist_data = py_densityplotCompareColumns(formatedCSVThereshold0, columns, percentile=per, comparison=str_to_title(configDesignStr), xlabel="score", outputfiledir=OutputFileDirectory, legend=TRUE, expLabel=experimentIdentifier)
   
 }
 
 
-##____dot plots___Not Finished##
+##____dot plots___Not Finished_dontRUN##
 
 #res will hold the last group comparison in this case 49 hour timepoint
 genes = py_getlistofGenes_Padj_range(as.data.frame(res), min_=600)
 
-plotCounts(dds, gene=genes[1], intgroup=c("conditionAndtimepoint"))
+plotCounts(dds, gene=genes[1], intgroup=c(configDesignStr))
 
 cnts <- counts(dds)[genes[1],]
-group <- colData(dds)[[c("conditionAndtimepoint")]]
+group <- colData(dds)[[c(configDesignStr)]]
 class(group)
 data <- data.frame(count=cnts, group=as.integer(group))
 data
