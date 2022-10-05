@@ -73,6 +73,7 @@
 source("NewFullRNAseqPipeline_metadata.R")
 
 
+
 dds<-DESeqDataSetFromMatrix( countData = cts,
                              colData = coldata,
                              design = configDesign)
