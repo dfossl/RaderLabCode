@@ -301,18 +301,18 @@ for(per in percentiles){
 
 ##____dot plots___Not Finished_dontRUN##
 
-#res will hold the last group comparison in this case 49 hour timepoint
-genes = py_getlistofGenes_Padj_range(as.data.frame(res), min_=600)
+# #res will hold the last group comparison in this case 49 hour timepoint
+# genes = py_getlistofGenes_Padj_range(as.data.frame(res), min_=600)
 
-plotCounts(dds, gene=genes[1], intgroup=c(configDesignStr))
+# plotCounts(dds, gene=genes[1], intgroup=c(configDesignStr))
 
-cnts <- counts(dds)[genes[1],]
-group <- colData(dds)[[c(configDesignStr)]]
-class(group)
-data <- data.frame(count=cnts, group=as.integer(group))
-data
-plot(data$group + runif(ncol(dds),-.05,.05), data$count, xlim=c(.5,max(data$group)+.5), log="", xaxt="n", xlab="group", ylab="count", main=genes[1])
-axis(1, at=seq_along(levels(group)), levels(group))
+# cnts <- counts(dds)[genes[1],]
+# group <- colData(dds)[[c(configDesignStr)]]
+# class(group)
+# data <- data.frame(count=cnts, group=as.integer(group))
+# data
+# plot(data$group + runif(ncol(dds),-.05,.05), data$count, xlim=c(.5,max(data$group)+.5), log="", xaxt="n", xlab="group", ylab="count", main=genes[1])
+# axis(1, at=seq_along(levels(group)), levels(group))
 
 #__________Python Enrichment_________#
 percentiles <- c(.99, .95, .90)
@@ -326,9 +326,9 @@ keggDataFrame <- py_getKEGGDataframe(formatedCSVThereshold0)
 colnames(keggDataFrame)
 
 #kegg_LFC <- keggDataFrame[,c("LFC_LP1hVRM1h", "LFC_LP2hVRM2h", "LFC_LP24hVRM24h", "LFC_LP49hVRM49h")]
-kegg_LFC <- keggDataFrame[,c("LFC_AuVRM")]
+kegg_LFC <- keggDataFrame[,c(paste("LFC_", treated, "V", control, sep=""))]
 
-#So that legend shows green as positive and red negative.
+#Flip sign so that legend shows green as positive and red negative.
 kegg_LFC <- -1*kegg_LFC
 
 
@@ -443,7 +443,7 @@ genesToKeep = (py_sortcolumns(formatedCSVThereshold0, .90, "score"))
 sig_gene_subset_formatedCSVThereshold0 <-py_subsetDataOnGenes(formatedCSVThereshold0, genesToKeep)
 
 #elbow plot can be used to visually pick  a cluster, optimal K is a algorthum that pick it
-py_elbowPlot(sig_gene_subset_formatedCSVThereshold0, "Score", OutputFileDirectory, label="LP", max_k=50)
+py_elbowPlot(sig_gene_subset_formatedCSVThereshold0, "Score", OutputFileDirectory, label=experimentIdentifier, max_k=50)
 
 # if you dont want to use elbow plot this will give a suggested k value.
 optimal_k <- (py_optimalK(sig_gene_subset_formatedCSVThereshold0, "lfc", nrefs=5, maxClusters=20)[[2]])
@@ -457,7 +457,7 @@ write.csv(kmeans_result, paste(OutputFileDirectory, "/", "Kmeans_results.csv", s
 # py_visualizeKmeans(kmeans_result, "lfc", OutputFileDirectory)
 
 # refernece column ins a column in the provided dataframe
-normalized_LFC <- py_generateNormalized_LFC(kmeans_result, "lfc", reference_column="LFC_LP1hVRM1h")
+normalized_LFC <- py_generateNormalized_LFC(kmeans_result, "lfc", reference_column=pasted("LFC_", treated, "V", control, sep=""))
 write.csv(normalized_LFC, "Normalized_LFC_kmeans_results.csv")
 
 
@@ -471,7 +471,7 @@ normalizedCountData <- py_generateNormalized_Count(df_kmeans = kmeans_result,
                                                    df_counts = cts,
                                                    coldata = coldata,
                                                    reference_column = "conditionAndtimepoint",
-                                                   reference_entry = "RM1h",
+                                                   reference_entry = control,
                                                    color_column = "condition",
                                                    x_axis_group_column = "timepoint",
                                                    outputdir = OutputFileDirectory)
