@@ -1,0 +1,119 @@
+Pathway,Decription,Pvalue,Genes,"k,T,m,q"
+cme00970,Aminoacyl-tRNA biosynthesis,0.9980009837769344,['CYME_CMC037C'],0 1449 78 108
+cme02010,ABC transporters,0.3583866379461491,['CYME_CMT120C'],0 1449 78 8
+cme03008,Ribosome biogenesis in eukaryotes,0.9021158784244494,"['CYME_CMR371C', 'CYME_CMH198C']",1 1449 78 70
+cme03010,Ribosome,0.9960856234007442,"['CYME_CMT544C', 'CYME_CMJ238C']",1 1449 78 134
+cme03013,RNA transport,0.9682323476832077,['CYME_CMI187C'],0 1449 78 61
+cme03015,mRNA surveillance pathway,0.866966855181915,['CYME_CMH020C'],0 1449 78 36
+cme03018,RNA degradation,0.7211114581917326,"['CYME_CMM196C', 'CYME_CMM026C']",1 1449 78 46
+cme03020,RNA polymerase,0.3738702785768897,"['CYME_CMG169C', 'CYME_CMP008C']",1 1449 78 24
+cme03022,Basal transcription factors,0.7378810979879836,['CYME_CMD185C'],0 1449 78 24
+cme03030,DNA replication,0.5222529051090351,"['CYME_CMS101C', 'CYME_CMC123C']",1 1449 78 32
+cme03040,Spliceosome,1.0,[],-1 1449 78 44
+cme03050,Proteasome,0.049371531422373924,"['CYME_CML133C', 'CYME_CMK137C', 'CYME_CMK289C', 'CYME_CMC114C', 'CYME_CMI156C']",4 1449 78 38
+cme03060,Protein export,0.7227139805125404,['CYME_CMT579C'],0 1449 78 23
+cme03410,Base excision repair,0.7227139805125404,['CYME_CMS101C'],0 1449 78 23
+cme03420,Nucleotide excision repair,0.3812624033997228,"['CYME_CMS101C', 'CYME_CML058C', 'CYME_CMC123C']",2 1449 78 41
+cme03430,Mismatch repair,0.08842476464596954,"['CYME_CMI229C', 'CYME_CMS101C', 'CYME_CMC123C']",2 1449 78 20
+cme03440,Homologous recombination,0.2726793334947225,"['CYME_CMK137C', 'CYME_CMC123C']",1 1449 78 19
+cme03450,Non-homologous end-joining,1.0,[],-1 1449 78 4
+cme04016,MAPK signaling pathway - plant,0.2829359170711129,['CYME_CME034C'],0 1449 78 6
+cme04070,Phosphatidylinositol signaling system,0.191353700583829,"['CYME_CMD080C', 'CYME_CME034C']",1 1449 78 15
+cme04120,Ubiquitin mediated proteolysis,0.9247443617344453,['CYME_CMI034C'],0 1449 78 46
+cme04122,Sulfur relay system,1.0,[],-1 1449 78 8
+cme04130,SNARE interactions in vesicular transport,1.0,[],-1 1449 78 15
+cme04136,Autophagy - other,1.0,[],-1 1449 78 4
+cme04141,Protein processing in endoplasmic reticulum,0.08680474497742889,"['CYME_CMK163C', 'CYME_CML023C', 'CYME_CMC022C', 'CYME_CMO226C', 'CYME_CMT579C', 'CYME_CMJ101C']",5 1449 78 58
+cme04144,Endocytosis,0.4872796286274047,"['CYME_CMI268C', 'CYME_CMF103C']",1 1449 78 30
+cme04145,Phagosome,0.7066811343140416,['CYME_CMS332C'],0 1449 78 22
+cme04146,Peroxisome,0.4872796286274047,"['CYME_CME186C', 'CYME_CMM177C']",1 1449 78 30
+cme04712,Circadian rhythm - plant,0.2829359170711129,['CYME_CMS371C'],0 1449 78 6
+cme00010,Glycolysis / Gluconeogenesis,0.24403187280478977,"['CYME_CMM167C', 'CYME_CMM196C', 'CYME_CMT034C', 'CYME_CMJ250C']",3 1449 78 47
+cme00020,Citrate cycle (TCA cycle),0.17426117109971037,"['CYME_CMT611C', 'CYME_CMT582C', 'CYME_CMQ191C']",2 1449 78 27
+cme00030,Pentose phosphate pathway,0.26042459032985416,"['CYME_CMI224C', 'CYME_CMM196C', 'CYME_CMT034C']",2 1449 78 33
+cme00040,Pentose and glucuronate interconversions,1.0,[],-1 1449 78 10
+cme00051,Fructose and mannose metabolism,0.191353700583829,"['CYME_CMM196C', 'CYME_CMQ359C']",1 1449 78 15
+cme00052,Galactose metabolism,0.45710327521528227,['CYME_CMM196C'],0 1449 78 11
+cme00053,Ascorbate and aldarate metabolism,1.0,[],-1 1449 78 11
+cme00061,Fatty acid biosynthesis,0.5657566172118934,['CYME_CME186C'],0 1449 78 15
+cme00062,Fatty acid elongation,1.0,[],-1 1449 78 7
+cme00071,Fatty acid degradation,0.45710327521528227,['CYME_CME186C'],0 1449 78 11
+cme00072,Synthesis and degradation of ketone bodies,1.0,[],-1 1449 78 4
+cme00100,Steroid biosynthesis,0.11485096818515478,"['CYME_CMS319C', 'CYME_CMG178C']",1 1449 78 11
+cme00130,Ubiquinone and other terpenoid-quinone biosynthesis,0.5144209595706027,['CYME_CMM178C'],0 1449 78 13
+cme00190,Oxidative phosphorylation,0.06370479061689628,"['CYME_CMP152C', 'CYME_CMR289C', 'CYME_CMS332C', 'CYME_CMT582C', 'CYME_CMI095C', 'CYME_CMG064C', 'CYME_CMM026C']",6 1449 78 67
+cme00195,Photosynthesis,0.7635889548836174,"['CYME_CMQ165C', 'CYME_CMO066C']",1 1449 78 50
+cme00196,Photosynthesis - antenna proteins,1.0,[],-1 1449 78 8
+cme00220,Arginine biosynthesis,1.0,[],-1 1449 78 14
+cme00230,Purine metabolism,0.9366190227583766,['CYME_CML050C'],0 1449 78 49
+cme00240,Pyrimidine metabolism,0.4129350388098877,"['CYME_CML050C', 'CYME_CML265C']",1 1449 78 26
+cme00250,"Alanine, aspartate and glutamate metabolism",1.0,[],-1 1449 78 21
+cme00260,"Glycine, serine and threonine metabolism",0.5049612047909787,"['CYME_CMT003C', 'CYME_CMM177C']",1 1449 78 31
+cme00261,Monobactam biosynthesis,1.0,[],-1 1449 78 7
+cme00270,Cysteine and methionine metabolism,0.8940238001754671,['CYME_CMT611C'],0 1449 78 40
+cme00280,"Valine, leucine and isoleucine degradation",1.0,[],-1 1449 78 22
+cme00290,"Valine, leucine and isoleucine biosynthesis",1.0,[],-1 1449 78 11
+cme00300,Lysine biosynthesis,1.0,[],-1 1449 78 8
+cme00310,Lysine degradation,1.0,[],-1 1449 78 9
+cme00330,Arginine and proline metabolism,0.589376550164611,['CYME_CMM177C'],0 1449 78 16
+cme00332,Carbapenem biosynthesis,1.0,[],-1 1449 78 2
+cme00340,Histidine metabolism,1.0,[],-1 1449 78 11
+cme00350,Tyrosine metabolism,0.5657566172118934,['CYME_CMT003C'],0 1449 78 15
+cme00360,Phenylalanine metabolism,0.45710327521528227,['CYME_CMT003C'],0 1449 78 11
+cme00380,Tryptophan metabolism,1.0,[],-1 1449 78 13
+cme00400,"Phenylalanine, tyrosine and tryptophan biosynthesis",1.0,[],-1 1449 78 23
+cme00410,beta-Alanine metabolism,0.4259894291205023,['CYME_CMT003C'],0 1449 78 10
+cme00430,Taurine and hypotaurine metabolism,1.0,[],-1 1449 78 3
+cme00440,Phosphonate and phosphinate metabolism,1.0,[],-1 1449 78 2
+cme00450,Selenocompound metabolism,1.0,[],-1 1449 78 12
+cme00460,Cyanoamino acid metabolism,1.0,[],-1 1449 78 6
+cme00472,D-Arginine and D-ornithine metabolism,0.48655108087053955,['CYME_CMM177C'],0 1449 78 12
+cme00480,Glutathione metabolism,0.18803778928650308,"['CYME_CMI224C', 'CYME_CML050C', 'CYME_CMO318C']",2 1449 78 28
+cme00500,Starch and sucrose metabolism,1.0,[],-1 1449 78 24
+cme00510,N-Glycan biosynthesis,0.12259860926028542,"['CYME_CMQ309C', 'CYME_CMO226C', 'CYME_CMQ042C']",2 1449 78 23
+cme00511,Other glycan degradation,0.15305347272087338,['CYME_CMN195C'],0 1449 78 3
+cme00513,Various types of N-glycan biosynthesis,0.191353700583829,"['CYME_CMO226C', 'CYME_CMT636C']",1 1449 78 15
+cme00514,Other types of O-glycan biosynthesis,0.2829359170711129,['CYME_CMR221C'],0 1449 78 6
+cme00515,Mannose type O-glycan biosynthesis,0.2829359170711129,['CYME_CMR221C'],0 1449 78 6
+cme00520,Amino sugar and nucleotide sugar metabolism,0.5222529051090351,"['CYME_CMR012C', 'CYME_CMQ359C']",1 1449 78 32
+cme00523,Polyketide sugar unit biosynthesis,1.0,[],-1 1449 78 9
+cme00561,Glycerolipid metabolism,0.0025492956004508362,"['CYME_CMA017C', 'CYME_CMR054C', 'CYME_CMQ199C', 'CYME_CMR012C', 'CYME_CMR015C']",4 1449 78 19
+cme00562,Inositol phosphate metabolism,0.589376550164611,['CYME_CMD080C'],0 1449 78 16
+cme00564,Glycerophospholipid metabolism,0.017040323154998354,"['CYME_CMA017C', 'CYME_CMR112C', 'CYME_CMR054C', 'CYME_CMD113C', 'CYME_CMS008C']",4 1449 78 29
+cme00565,Ether lipid metabolism,0.05037459287728514,"['CYME_CMR054C', 'CYME_CMS008C']",1 1449 78 7
+cme00590,Arachidonic acid metabolism,1.0,[],-1 1449 78 4
+cme00592,alpha-Linolenic acid metabolism,1.0,[],-1 1449 78 3
+cme00600,Sphingolipid metabolism,0.4259894291205023,['CYME_CMR054C'],0 1449 78 10
+cme00620,Pyruvate metabolism,0.9054363143296175,['CYME_CMT611C'],0 1449 78 42
+cme00630,Glyoxylate and dicarboxylate metabolism,0.5222529051090351,"['CYME_CMT611C', 'CYME_CMQ191C']",1 1449 78 32
+cme00640,Propanoate metabolism,1.0,[],-1 1449 78 23
+cme00650,Butanoate metabolism,1.0,[],-1 1449 78 10
+cme00660,C5-Branched dibasic acid metabolism,1.0,[],-1 1449 78 3
+cme00670,One carbon pool by folate,1.0,[],-1 1449 78 11
+cme00710,Carbon fixation in photosynthetic organisms,0.18803778928650308,"['CYME_CMT611C', 'CYME_CMM167C', 'CYME_CMJ250C']",2 1449 78 28
+cme00730,Thiamine metabolism,1.0,[],-1 1449 78 12
+cme00740,Riboflavin metabolism,0.06486263653665089,"['CYME_CMJ229C', 'CYME_CML247C']",1 1449 78 8
+cme00750,Vitamin B6 metabolism,1.0,[],-1 1449 78 7
+cme00760,Nicotinate and nicotinamide metabolism,1.0,[],-1 1449 78 14
+cme00770,Pantothenate and CoA biosynthesis,1.0,[],-1 1449 78 12
+cme00780,Biotin metabolism,1.0,[],-1 1449 78 9
+cme00785,Lipoic acid metabolism,1.0,[],-1 1449 78 5
+cme00790,Folate biosynthesis,1.0,[],-1 1449 78 15
+cme00860,Porphyrin and chlorophyll metabolism,1.0,[],-1 1449 78 27
+cme00900,Terpenoid backbone biosynthesis,0.2931520633663583,"['CYME_CMG148C', 'CYME_CMS444C']",1 1449 78 20
+cme00906,Carotenoid biosynthesis,1.0,[],-1 1449 78 5
+cme00909,Sesquiterpenoid and triterpenoid biosynthesis,0.10479793646990264,['CYME_CMG178C'],0 1449 78 2
+cme00910,Nitrogen metabolism,0.3583866379461491,['CYME_CMG019C'],0 1449 78 8
+cme00920,Sulfur metabolism,0.5657566172118934,['CYME_CMG021C'],0 1449 78 15
+cme00940,Phenylpropanoid biosynthesis,1.0,[],-1 1449 78 12
+cme00950,Isoquinoline alkaloid biosynthesis,0.2829359170711129,['CYME_CMT003C'],0 1449 78 6
+cme00960,"Tropane, piperidine and pyridine alkaloid biosynthesis",0.32169613776979966,['CYME_CMT003C'],0 1449 78 7
+cme00966,Glucosinolate biosynthesis,1.0,[],-1 1449 78 3
+cme01040,Biosynthesis of unsaturated fatty acids,0.32169613776979966,['CYME_CMJ201C'],0 1449 78 7
+cme01100,Metabolic pathways,0.09169571896865489,"['CYME_CMR221C', 'CYME_CMA017C', 'CYME_CMT611C', 'CYME_CMM178C', 'CYME_CME186C', 'CYME_CMP152C', 'CYME_CMI224C', 'CYME_CMJ201C', 'CYME_CMR289C', 'CYME_CML050C', 'CYME_CMJ229C', 'CYME_CMR054C', 'CYME_CMS332C', 'CYME_CMD080C', 'CYME_CMM167C', 'CYME_CMS319C', 'CYME_CMT582C', 'CYME_CMI095C', 'CYME_CMG148C', 'CYME_CMM196C', 'CYME_CMQ309C', 'CYME_CMQ165C', 'CYME_CMO226C', 'CYME_CMO066C', 'CYME_CMO318C', 'CYME_CMQ191C', 'CYME_CMT003C', 'CYME_CML265C', 'CYME_CML247C', 'CYME_CMT636C', 'CYME_CMG064C', 'CYME_CMS444C', 'CYME_CMQ199C', 'CYME_CMQ042C', 'CYME_CMM177C', 'CYME_CMS008C', 'CYME_CMR012C', 'CYME_CMQ359C', 'CYME_CMG021C', 'CYME_CMR015C', 'CYME_CMT034C', 'CYME_CMG178C', 'CYME_CMG019C', 'CYME_CMJ250C']",43 1449 78 702
+cme01110,Biosynthesis of secondary metabolites,0.49630475296464316,"['CYME_CMA017C', 'CYME_CMT611C', 'CYME_CMM178C', 'CYME_CMI224C', 'CYME_CMJ229C', 'CYME_CMR054C', 'CYME_CMM167C', 'CYME_CMS319C', 'CYME_CMT582C', 'CYME_CMG148C', 'CYME_CMM196C', 'CYME_CMD113C', 'CYME_CMQ191C', 'CYME_CMT003C', 'CYME_CML247C', 'CYME_CMS444C', 'CYME_CMM177C', 'CYME_CMQ359C', 'CYME_CMG178C', 'CYME_CMJ250C']",19 1449 78 363
+cme01200,Carbon metabolism,0.2347693114103485,"['CYME_CMT611C', 'CYME_CMI224C', 'CYME_CMM167C', 'CYME_CMT582C', 'CYME_CMM196C', 'CYME_CMQ191C', 'CYME_CMT034C', 'CYME_CMJ250C']",7 1449 78 110
+cme01210,2-Oxocarboxylic acid metabolism,0.7786377674203427,['CYME_CMQ191C'],0 1449 78 27
+cme01212,Fatty acid metabolism,0.4129350388098877,"['CYME_CME186C', 'CYME_CMJ201C']",1 1449 78 26
+cme01230,Biosynthesis of amino acids,0.8594151975185773,"['CYME_CMM167C', 'CYME_CMM196C', 'CYME_CMQ191C', 'CYME_CMJ250C']",3 1449 78 110
+cme01240,Biosynthesis of cofactors,0.9275062343895852,"['CYME_CMM178C', 'CYME_CMJ229C', 'CYME_CML247C', 'CYME_CMQ359C']",3 1449 78 128
