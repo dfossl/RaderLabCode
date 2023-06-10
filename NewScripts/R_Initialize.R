@@ -1,4 +1,4 @@
-# Chosen Working Directory (Default is current working directory.)
+# Working Directory (Default is current working directory.)
 workingDirectory = "C:\\Users\\dfoss\\Documents\\Projects\\RaderLab\\RaderLabCode\\NewScripts"
 setwd(workingDirectory)
 

@@ -330,7 +330,7 @@ kegg_LFC <- keggDataFrame[,c("LFC_LP1hvRM1h", "LFC_LP2hvRM2h", "LFC_LP24hvRM24h"
 
 #Flip sign so that legend shows green as positive and red negative.
 # org_kegg_LFC <- kegg_LFC
-kegg_LFC <- -1*kegg_LFC
+#kegg_LFC <- -1*kegg_LFC
 
 # single gene test
 # pathview(gene.data = kegg_LFC, pathway.id = "cme03030", species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE)
@@ -344,8 +344,12 @@ kegg_LFC <- -1*kegg_LFC
 
 #kegg_LFC["CYME_CMK133C",]
 
+
 # gene.data must have gene ids as the index. IF it doesn't it will not color properly.
-pv.out.list <- sapply(pathways, function(pid) pathview(gene.data = kegg_LFC, pathway.id = pid, species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE))
+pv.out.list <- sapply(pathways, function(pid) pathview(gene.data = kegg_LFC, pathway.id = pid, species = "cme", gene.idtype = "KEGG",plot.col.key=TRUE,
+                                                       low = list(gene = "red", cpd ="yellow"),
+                                                       mid = list(gene = "gray", cpd = "gray"),
+                                                       high = list(gene = "green", cpd = "blue")))
 
 # Get all pathways that are of interest. visualize eachone. Need LFCs for each timepoint, not sure if I need to rescale
 
