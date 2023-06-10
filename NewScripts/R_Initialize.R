@@ -1,3 +1,7 @@
+# Chosen Working Directory (Default is current working directory.)
+workingDirectory = "C:\\Users\\dfoss\\Documents\\Projects\\RaderLab\\RaderLabCode\\NewScripts"
+setwd(workingDirectory)
+
 # This loads all the function from the DifferentialExpressionFunctions.R script. Make sure its the right directory for you
 source("R_initialize_metadata.R")
 source("DifferentialExpressionFunctions.R")
@@ -7,6 +11,8 @@ set.seed(123)
 
 #Setting up python instance
 #cmd- which python3 gets path
+# python working directory is not R working directory but is the directory RStudio is opened in
+# lame
 {
 use_python(pythonInstanceDir, required = T)
 py_config()
@@ -19,10 +25,10 @@ source_python(pythonModuleDir)
 
 # Setting Working Directory
 # Shows current working directory.
-getwd()
+# getwd()
 
 # If working Directory should change place path here.
-setwd(workingDirectory)
+# setwd(workingDirectory)
 
 # This location is where ouput Files will Start. Should be name of folder in working directory
 OutputFileDirectory <- file.path(workingDirectory, outputDirName)

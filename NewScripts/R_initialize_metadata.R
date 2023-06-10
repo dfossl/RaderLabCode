@@ -1,20 +1,18 @@
 
 # Where the python executable is located
-pythonInstanceDir = "/usr/local/bin/python3"
+pythonInstanceDir = "C:\\Users\\dfoss\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 
 # Where the python file is located
-pythonModuleDir = "/Users/stephen/Dropbox/•LAB\ DATA/Cm\ Data/C.\ merolae\ Bioinformatics/pipelinepythonscripts/Deseq2EnrichmentWorkFlowFunctions.py"
+pythonModuleDir = "Deseq2EnrichmentWorkFlowFunctions.py"
 
-# Chosen Working Directory (Default is current working directory.)
-workingDirectory = getwd()
 
 # Name of the output folder will be appened to current working directory
-outputDirName = "R_Output_folder"
+outputDirName = "..\\R_Output_folder"
 
 # Count file directory
-CountFileDirectory = "Au_data.csv"
+CountFileDirectory = "..\\Data\\2019-02-26_low_phosphorus.csv"
 
 # AnnotationFileDirectory
-AnnotationFileDirectory = "Au_annotation.csv"
+AnnotationFileDirectory = "LP_annotation.csv"
 
 

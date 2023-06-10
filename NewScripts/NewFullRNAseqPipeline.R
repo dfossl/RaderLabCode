@@ -8,7 +8,7 @@
 
 
 #________________Time Course Analysis___________________#
-#https://bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html#time-course-experiments
+# https://bioconductor.org/packages/release/workflows/vignettes/rnaseqGene/inst/doc/rnaseqGene.html#time-course-experiments
 
 # Preforms a likelhood ratio test where we remove the condition-specific
 # differences over Time. Genes with small p values
@@ -325,18 +325,26 @@ keggDataFrame <- py_getKEGGDataframe(formatedCSVThereshold0)
 
 colnames(keggDataFrame)
 
-#kegg_LFC <- keggDataFrame[,c("LFC_LP1hVRM1h", "LFC_LP2hVRM2h", "LFC_LP24hVRM24h", "LFC_LP49hVRM49h")]
-kegg_LFC <- keggDataFrame[,c(paste("LFC_", treated, "V", control, sep=""))]
+kegg_LFC <- keggDataFrame[,c("LFC_LP1hvRM1h", "LFC_LP2hvRM2h", "LFC_LP24hvRM24h", "LFC_LP49hvRM49h")]
+# kegg_LFC <- keggDataFrame[,c(paste("LFC_", treated, "v", control, sep="")), drop = FALSE]
 
 #Flip sign so that legend shows green as positive and red negative.
+# org_kegg_LFC <- kegg_LFC
 kegg_LFC <- -1*kegg_LFC
 
+# single gene test
+# pathview(gene.data = kegg_LFC, pathway.id = "cme03030", species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE)
+
+#multi gene test It needs dataframe with geneids
+# combined_vector <- cbind(org_kegg_LFC, kegg_LFC)
+# pathview(gene.data = keggDataFrame[,c("Score_LPvRM", "LFC_LPvRM")], pathway.id = "cme03030", species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE)
 
 
-#pathview(gene.data = kegg_LFC, pathway.id = "cme03030", species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE)
+
 
 #kegg_LFC["CYME_CMK133C",]
 
+# gene.data must have gene ids as the index. IF it doesn't it will not color properly.
 pv.out.list <- sapply(pathways, function(pid) pathview(gene.data = kegg_LFC, pathway.id = pid, species = "cme", gene.idtype = "KEGG",plot.col.key=FALSE))
 
 # Get all pathways that are of interest. visualize eachone. Need LFCs for each timepoint, not sure if I need to rescale

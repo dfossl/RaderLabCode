@@ -1,20 +1,20 @@
 # These values should be the same name and should be the name
 # of a column in annotation
-configDesign = ~condition
-configDesignStr = "condition"
+configDesign = ~conditionAndtimepoint
+configDesignStr = "conditionAndtimepoint"
 
 
 # This will be tagged at the front of all generated files
 # as a way to identify what analysis is being done.
-experimentIdentifier = "Au"
-# Dylan -> experimentIdentifier = "LPvRm"
+# experimentIdentifier = "Au"
+experimentIdentifier = "LPvRm"
 
 
 # Differential expression comparisons
 # Look at the annotation file column that mathches design and pick
 # values to compare.
-# Dylan -> controlVector <- c("RM")
-# Dylan -> treatedVector <- c("LP")
-controlVector <- c("RM")
-treatedVector <- c("Au")
+controlVector <- c("RM1h", "RM2h", "RM24h", "RM49h")
+treatedVector <- c("LP1h", "LP2h", "LP24h", "LP49h")
+# controlVector <- c("RM")
+# treatedVector <- c("Au")
  

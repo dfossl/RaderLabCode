@@ -1,6 +1,6 @@
 
 # Directory to the annotations folder.
-annotationDir = "/Users/stephen/Dropbox/•LAB DATA/Cm Data/C. merolae Bioinformatics/pipelinepythonscripts/Annotations"
+annotationDir = "C:\\Users\\dfoss\\Documents\\Projects\\RaderLab\\RaderLabCode\\Annotations\\Annotations"
 
 
 # Dylan -> annotationDir = "Annotations\\Annotations"
